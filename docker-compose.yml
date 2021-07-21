@@ -1,5 +1,12 @@
 version: '3.7'
 
+networks:
+  net-ci:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${IP_RED}
+
 services:
   jenkins:
     container_name: jenkins
@@ -12,16 +19,19 @@ services:
       - ./jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - net
-  
-#   sonarqube:
-#     container_name: sonarqube
-#     image: sonarqube
-#     ports:    
-#       - 9000:9000
-#     networks: 
-#       - net
-  
-networks:
-  net:
-    driver: bridge
+      net-ci:
+        ipv4_address: ${JENKINS_RED}
+
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:8.9.1-community
+    ports:
+      - 9000:9000
+    volumes:
+      - ./sonarqube/conf:/opt/sonarqube/conf
+      - ./sonarqube/data:/opt/sonarqube/data
+      - ./sonarqube/logs:/opt/sonarqube/logs
+      - ./sonarqube/extensions:/opt/sonarqube/extensions
+    networks:
+      net-ci:
+        ipv4_address: ${SONAR_RED}

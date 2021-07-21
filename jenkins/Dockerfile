@@ -2,6 +2,7 @@ FROM jenkins/jenkins:2.289.2-lts
 
 USER root
 
+# Install Docker
 RUN apt-get update && apt-get install -y apt-transport-https \
        ca-certificates curl gnupg2 \
        software-properties-common
@@ -12,10 +13,10 @@ RUN add-apt-repository \
        $(lsb_release -cs) stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
 
-RUN apt-get install subversion -y
+# Install Subversion and Maven
+RUN apt-get install subversion maven -y
 
 USER jenkins
 
 # Install plugins 
-RUN jenkins-plugin-cli --plugins sonar:2.13 subversion:2.14.2 \
-                            docker-plugin:1.2.2 docker-workflow:1.26
+RUN jenkins-plugin-cli --plugins sonar:2.13.1 docker-plugin:1.2.2 docker-workflow:1.26
