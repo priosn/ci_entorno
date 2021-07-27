@@ -13,8 +13,8 @@ RUN add-apt-repository \
        $(lsb_release -cs) stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
 
-# Install Subversion and Maven
-RUN apt-get install subversion maven -y
+# Install Subversion
+RUN apt-get install subversion -y
 
 USER jenkins
 

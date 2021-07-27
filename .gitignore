@@ -1,2 +1,4 @@
 jenkins_home/
 sonarqube/
+sonar-server/
+plugins/
