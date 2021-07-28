@@ -13,8 +13,8 @@ RUN add-apt-repository \
        $(lsb_release -cs) stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
 
-# Install Subversion
-RUN apt-get install subversion -y
+# Install Subversion and cppcheck
+RUN apt-get install subversion cppcheck -y
 
 USER jenkins
 
