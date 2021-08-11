@@ -9,8 +9,11 @@ RUN apt-key fingerprint 0EBFCD88
 RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
 
-# Install Subversion and cppcheck
-RUN apt-get install subversion cppcheck -y
+# Se instala Subversion, cppcheck y pip
+RUN apt-get install subversion cppcheck python3-pip -y
+
+# Se instala paquete pyyaml
+RUN pip3 install pyyaml
 
 USER jenkins
 

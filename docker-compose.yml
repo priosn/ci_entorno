@@ -19,13 +19,14 @@ services:
       - ./jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - ./sonar-server:/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-server
+      - ./out:/out
     networks:
       net-ci:
         ipv4_address: ${JENKINS_RED}
 
   sonarqube:
     container_name: sonarqube
-    image: sonarqube:8.9.1-community
+    image: sonarqube:8.9.2-community
     ports:
       - 9000:9000
     volumes:
