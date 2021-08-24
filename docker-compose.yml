@@ -22,6 +22,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./sonar-server:/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-server
       - ./out:/out
+      - ./blscv:/blscv
     networks:
       net-ci:
         ipv4_address: ${JENKINS_RED}

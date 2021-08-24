@@ -9,13 +9,13 @@ RUN apt-key fingerprint 0EBFCD88
 RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
 
-# Se instala Subversion, cppcheck y pip
+# Install Subversion, Cppcheck and  Pip
 RUN apt-get install subversion cppcheck python3-pip -y
 
-# Se instala paquete pyyaml
+# Install package Pyyaml
 RUN pip3 install pyyaml
 
 USER jenkins
 
-# Install plugins 
-RUN jenkins-plugin-cli --plugins sonar:2.13.1 docker-plugin:1.2.2 docker-workflow:1.26
+# Install plugins in Jenkins
+RUN jenkins-plugin-cli --plugins sonar:2.13.1 docker-plugin:1.2.3 docker-workflow:1.26 subversion:2.14.4
