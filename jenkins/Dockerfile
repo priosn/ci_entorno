@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.289.3-lts-jdk11
+FROM jenkins/jenkins:2.303.3-lts-jdk11
 
 USER root
 
@@ -18,4 +18,4 @@ RUN pip3 install pyyaml
 USER jenkins
 
 # Install plugins in Jenkins
-RUN jenkins-plugin-cli --plugins sonar:2.13.1 docker-plugin:1.2.3 docker-workflow:1.26 subversion:2.14.4
+RUN jenkins-plugin-cli --plugins sonar:2.14 docker-plugin:1.2.3 docker-workflow:1.26 subversion:2.15.1
